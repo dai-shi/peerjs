@@ -506,6 +506,7 @@ Negotiator._startPeerConnection = function(connection) {
 
   var pc = new RTCPeerConnection(connection.provider.options.config, optional);
   Negotiator.pcs[connection.type][connection.peer][id] = pc;
+  connection.pc_id = id;
 
   Negotiator._setupListeners(connection, pc, id);
 
@@ -602,6 +603,8 @@ Negotiator.cleanup = function(connection) {
   ) {
     pc.close();
     connection.pc = null;
+    connection.peerConnection = null;
+    delete Negotiator.pcs[connection.type][connection.peer][connection.pc_id];
   }
 };
 
@@ -1520,7 +1523,7 @@ Socket.prototype.close = function() {
 module.exports = Socket;
 
 },{"./util":8,"eventemitter3":9}],8:[function(require,module,exports){
-var defaultConfig = { iceServers: [{ url: "stun:stun.l.google.com:19302" }] };
+var defaultConfig = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
 var dataCount = 1;
 
 var BinaryPack = require("js-binarypack");
