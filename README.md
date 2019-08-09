@@ -1,19 +1,19 @@
 # PeerJS: Simple peer-to-peer with WebRTC #
 
+### https://t.me/joinchat/ENhPuhTvhm8WlIxTjQf7Og
+
 [![Backers on Open Collective](https://opencollective.com/peer/backers/badge.svg)](#backers)
  [![Sponsors on Open Collective](https://opencollective.com/peer/sponsors/badge.svg)](#sponsors) 
 
 PeerJS provides a complete, configurable, and easy-to-use peer-to-peer API built on top of WebRTC, supporting both data channels and media streams.
-
-### [http://peerjs.com](http://peerjs.com)
 
 ## Setup
 
 
 **Include the library**
 
-  with modules:
-        `npm install peerjs` or `yarn add peerjs`
+  with npm:
+        `npm install peerjs`
     and the usage:
   ```js
   import Peer from 'peerjs';
@@ -21,24 +21,23 @@ PeerJS provides a complete, configurable, and easy-to-use peer-to-peer API built
 
 
 **Create a Peer**  
-Get a [free API key](http://peerjs.com/peerserver). Your id only needs to be unique to the namespace of your API key.
 ```javascript
-var peer = new Peer('pick-an-id', {key: 'myapikey'}); 
+const peer = new Peer('pick-an-id'); 
 // You can pick your own id or omit the id if you want to get a random one from the server.
 ```
 
 ## Data connections
 **Connect**
 ```javascript
-var conn = peer.connect('another-peers-id');
-conn.on('open', function(){
+const conn = peer.connect('another-peers-id');
+conn.on('open', () => {
   conn.send('hi!');
 });
 ```
 **Receive**
 ```javascript
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
+peer.on('connection', (conn) => {
+  conn.on('data', (data) => {
     // Will print 'hi!'
     console.log(data);
   });
@@ -48,36 +47,39 @@ peer.on('connection', function(conn) {
 ## Media calls
 **Call**
 ```javascript
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-navigator.getUserMedia({video: true, audio: true}, function(stream) {
-  var call = peer.call('another-peers-id', stream);
-  call.on('stream', function(remoteStream) {
+navigator.mediaDevices.getUserMedia({video: true, audio: true}, (stream) => {
+  const call = peer.call('another-peers-id', stream);
+  call.on('stream', (remoteStream) => {
     // Show stream in some <video> element.
   });
-}, function(err) {
-  console.log('Failed to get local stream' ,err);
+}, (err) => {
+  console.error('Failed to get local stream', err);
 });
 
 ```
 **Answer**
 ```javascript
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-peer.on('call', function(call) {
-  navigator.getUserMedia({video: true, audio: true}, function(stream) {
+peer.on('call', (call) => {
+  navigator.mediaDevices.getUserMedia({video: true, audio: true}, (stream) => {
     call.answer(stream); // Answer the call with an A/V stream.
-    call.on('stream', function(remoteStream) {
+    call.on('stream', (remoteStream) => {
       // Show stream in some <video> element.
     });
-  }, function(err) {
-    console.log('Failed to get local stream' ,err);
+  }, (err) => {
+    console.error('Failed to get local stream', err);
   });
 });
 ```
+
+## Running tests
+
+```bash
+npm test
+```
+
 ## Links
 
-### [Documentation / API Reference](http://peerjs.com/docs)
-
-### [WebRTC Browser compatibility status](http://peerjs.com/status)
+### [Documentation / API Reference](https://peerjs.com/docs.html)
 
 ### [PeerServer](https://github.com/peers/peerjs-server)
 

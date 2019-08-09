@@ -1,6 +1,48 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
+
+<a name="1.0.2"></a>
+
+## 1.0.2 (2019-07-20)
+
+### Bug Fixes
+
+- fixed: memory leak in DataConnection #556
+- fixed: missing sdpMid in IceServer #550
+
+### Other
+
+- updated: old @types/webrtc dependency #549
+
+<a name="1.0.1"></a>
+
+## 1.0.1 (2019-07-09)
+
+### Bug Fixes
+
+- fixed: readyState of undefined #520
+- fixed: call sdpTransform in Answer #524
+- fixed: sdpTransform does not apply to makeAnswer SDP #523
+
+<a name="1.0.0"></a>
+
+## 1.0.0 (2019-04-10)
+
+### Refactoring
+
+Almost all project was refactored!!!
+
+- removed: xhr long-pooling #506
+- changed: fetch api instead of xhr
+
+### Features
+- added: heartbeat #502
+
+### Bug Fixes
+
+- fixed: destroy RTCPeerConnection #513
+- fixed: MediaStream memory leak #514
 
 <a name="0.3.18"></a>
 

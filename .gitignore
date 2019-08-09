@@ -13,10 +13,10 @@ results
 demo
 bower.json
 node_modules
+.cache
 npm-debug.log
 
 test/output
-dist
 .tscache
 test/public
 
