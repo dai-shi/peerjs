@@ -41,6 +41,9 @@ peer.on('connection', (conn) => {
     // Will print 'hi!'
     console.log(data);
   });
+  conn.on('open', () => {
+    conn.send('hello!');
+  });
 });
 ```
 
@@ -76,6 +79,23 @@ peer.on('call', (call) => {
 ```bash
 npm test
 ```
+
+## Browsers support
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
+| --------- | --------- | --------- |
+| last 4 versions| last 4 versions| 12.1+
+
+## Safari
+
+1. Safari supports only string data when sending via DataConnection. Use JSON serialization type if you want to communicate with Safari. By default, DataConnection uses Binary serialization type.
+
+## FAQ
+
+Q. I have a message ```Critical dependency: the request of a dependency is an expression``` in browser's console
+
+A. The message occurs when you use PeerJS with Webpack. It is not critical! It relates to Parcel https://github.com/parcel-bundler/parcel/issues/2883 We'll resolve it when updated to Parcel V2.
+
 
 ## Links
 

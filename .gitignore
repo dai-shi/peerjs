@@ -5,7 +5,7 @@ lib-cov
 *.dat
 *.out
 *.pid
-*.gz
+*.[t]gz
 
 pids
 logs
@@ -14,9 +14,10 @@ demo
 bower.json
 node_modules
 .cache
+.idea
 npm-debug.log
 
 test/output
 .tscache
 test/public
-
+.vscode/
